@@ -16,7 +16,19 @@ namespace BlogMvcApp.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return View(context.Bloglar.ToList());
+            var bloglar=context.Bloglar.Select(i=>new BlogModel() 
+            {
+            Id = i.Id,
+            Baslık=i.Baslık.Length>100 ? i.Baslık.Substring(0,100)+"...":i.Baslık,
+            Acıklama=i.Acıklama,
+            Anasayfa=i.Anasayfa,
+            Onay=i.Onay,
+
+            
+            })
+                .Where(i =>i.Onay == true&&i.Anasayfa==true);
+
+            return View(bloglar.ToList());
         }
     }
 }

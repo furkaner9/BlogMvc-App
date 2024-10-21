@@ -1,11 +1,44 @@
-﻿@model IEnumerable<BlogMvcApp.Models.Blog>
+﻿@model IEnumerable<BlogMvcApp.Models.BlogModel>
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Blog Listesi</h2>
 
-@foreach (var i in Model)
-{
-    <p>@i.Baslık</p>
-}
+
+<div class="row ">
+    <div class="col-md-8">
+        @foreach (var blog in Model)
+        {
+            <div>
+                <h3 class="page-header"> @blog.Baslık</h3>
+                <hr />
+                <p>
+                    <span class="glyphicon glyphicon-time"> @blog.EklemeTarihi</span>
+                </p>
+                <img class="img-responsive" src="https://image-placeholder.com/images/actual-size/640x640.png" alt="" />
+                <hr />
+                <p>
+                    @blog.Acıklama
+                </p>
+                <button class="btn btn-primary">Daha Fazla... </button>
+            </div>
+        }
+    </div>
+    <div class="col-md-4">
+        <div class="well">
+            <h4>Blog Search</h4>
+            <div class="input-group">
+                <input type="text" class="form-control"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
