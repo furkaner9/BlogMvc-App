@@ -3,72 +3,47 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>Blog</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.KategoriAdi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category.KategoriAdi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Baslık)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Baslık)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Acıklama)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Acıklama)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Icerik)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Icerik)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EklemeTarihi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EklemeTarihi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Onay)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Onay)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Anasayfa)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Anasayfa)
-        </dd>
-
-    </dl>
+<div class="row">
+    <div class="col-md-8">
+        <h1>@Model.Baslık</h1>
+        <hr />
+        <p>
+            <span class="glyphicon glyphicon-time"></span>
+            @Model.EklemeTarihi
+        </p>
+        <hr />
+        <blockquote>
+            <p> @Model.Acıklama </p>
+        </blockquote>
+        <hr />
+        <blockquote>
+            <p> @Model.Icerik </p>
+        </blockquote>
+        <hr />
+        <div class="comment">
+            <div class="well">
+                <h4>Yorum Yap</h4>
+                <form role="form">
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit"class="btn btn-primary">Kaydet</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="well">
+            <h4>Blog Search</h4>
+            <div class="input-group">
+                <input type="text" class="form-control" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
