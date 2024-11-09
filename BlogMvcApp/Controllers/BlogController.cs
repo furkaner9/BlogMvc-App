@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.Mvc;
 using BlogMvcApp.Models;
@@ -13,6 +14,34 @@ namespace BlogMvcApp.Controllers
     public class BlogController : Controller
     {
         private BlogContext db = new BlogContext();
+
+        public ActionResult List(int? id,string q)
+        {
+            var bloglar = db.Bloglar.Where(i => i.Onay == true && i.Anasayfa == true)
+                .Select(i => new BlogModel()
+                {
+                    Id = i.Id,
+                    Baslık = i.Baslık.Length > 100 ? i.Baslık.Substring(0, 100) + "..." : i.Baslık,
+                    Acıklama = i.Acıklama,
+                    Anasayfa = i.Anasayfa,
+                    Onay = i.Onay,
+                    CategoryId=i.CategoryId,
+
+
+                }).AsQueryable();
+
+            if (string.IsNullOrEmpty("q") == false)
+            {
+                bloglar=bloglar.Where(i=>i.Baslık.Contains("q") ||i.Acıklama.Contains("q"));
+            }
+
+            if (id != null)
+            {
+                bloglar=bloglar.Where(i=> i.CategoryId==id);
+            }
+
+            return View(bloglar.ToList());
+        }
 
         // GET: Blog
         public ActionResult Index()

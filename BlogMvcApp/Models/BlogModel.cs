@@ -15,5 +15,7 @@ namespace BlogMvcApp.Models
         public bool Onay { get; set; }
         public bool Anasayfa { get; set; }
 
+        public int CategoryId { get; set; }
+
     }
 }
